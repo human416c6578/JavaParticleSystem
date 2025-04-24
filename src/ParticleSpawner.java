@@ -57,28 +57,27 @@ public class ParticleSpawner {
                 float dragSpeed = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
                 // Only spawn particles if mouse has moved enough
-                if (dragSpeed > 2.0f) {
+                if (dragSpeed > 1.0f) {
                     // Create particles along the drag path
                     Vector2 position = new Vector2((float) xpos, (float) ypos);
 
-                    float speed = (float) Math.random() * 25.0f + 25.0f;
+                    float speed = 10.0f * dragSpeed;
+                    speed = Math.clamp(speed, 10.0f, 100.0f);
                     Vector2 velocity = new Vector2(deltaX, deltaY);
                     velocity.normalize();
-                    velocity.add(velocity, speed);
 
-                    // Spawn particles with velocity opposite to drag direction
-                    int particleCount = (int) (dragSpeed / 2) + 150;
+                    int particleCount = (int)(speed);
                     for (int i = 0; i < particleCount; i++) {
                         // Add some randomness
-                        float offsetX = (float) (Math.random() * 6 - 3);
-                        float offsetY = (float) (Math.random() * 6 - 3);
+                        float offsetX = (float) (Math.random() * 10 - 5);
+                        float offsetY = (float) (Math.random() * 10 - 5);
                         Vector2 particlePos = new Vector2(position.x + offsetX, position.y + offsetY);
 
                         // Add slight randomness to velocity
-                        float angleVariation = (float) (Math.random() * 1.0 - 0.5); // ±0.5 radians
+                        float angleVariation = (float) (Math.random() * 0.8 - 0.4); // ±0.4 radians
                         float newAngle = (float) Math.atan2(velocity.y, velocity.x) + angleVariation;
-                        float velX = (float) (Math.cos(newAngle) * speed * (1.0f + Math.random() * 1.5f));
-                        float velY = (float) (Math.sin(newAngle) * speed * (1.0f + Math.random() * 1.5f));
+                        float velX = (float) (Math.cos(newAngle) * speed * (2.0f + Math.random() * 1.0f));
+                        float velY = (float) (Math.sin(newAngle) * speed * (2.0f + Math.random() * 1.0f));
                         Vector2 particleVel = new Vector2(velX, velY);
 
                         spawnParticle(particlePos, particleVel, (float) (1.0f + Math.random() * 1.5f));
