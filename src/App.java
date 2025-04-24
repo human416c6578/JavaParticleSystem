@@ -10,8 +10,8 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 public class App {
 	private long window;
-    int WIDTH = 1920;
-    int HEIGHT = 1080;
+    int WIDTH = 800;
+    int HEIGHT = 800;
 	boolean mousePressed = false;
 	float lastMouseX = 0;
 	float lastMouseY = 0;
