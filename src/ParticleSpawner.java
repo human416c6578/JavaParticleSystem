@@ -22,7 +22,7 @@ public class ParticleSpawner {
         this.particleSystem = particleSystem;
         this.WIDTH = width;
         this.HEIGHT = height;
-        //spawnParticles(10000);
+        spawnParticles(2000);
     }
 
     public void setupMouseButtonCallback(long window) {
@@ -94,19 +94,17 @@ public class ParticleSpawner {
     private void spawnParticles(int num)
 	{
 		Random rnd = new Random();
-        float side_speed = 20.0f;
-		float fall_speed = 100.0f;
         int max_size = 4;
-        for(int i =0;i<num;i++)
+        for(int i = 0;i<num;i++)
         {
             Color c = new Color(rnd.nextFloat(0.1f), rnd.nextFloat(0.1f), rnd.nextFloat(1.0f));
             float x = rnd.nextFloat(WIDTH);
             Vector2 position = new Vector2(x, rnd.nextFloat(HEIGHT));
-			float size = rnd.nextFloat(max_size) + 1;
-            Vector2 velocity = new Vector2(side_speed * size, fall_speed * size);
-            float life = rnd.nextFloat(99);
+			float size = rnd.nextFloat(max_size);
+            Vector2 velocity = new Vector2((rnd.nextFloat(10.0f) - 5.0f) * size, (rnd.nextFloat(10.0f) - 5.0f) * size);
+            float life = rnd.nextFloat(60);
 			
-            Particle p = new Particle(size, position, velocity, c, life);
+            Particle p = new Particle(size, position, velocity, c, life, 0.0f);
             particleSystem.spawn(p);
         }
 	}
@@ -117,7 +115,7 @@ public class ParticleSpawner {
         int max_size = 2;
 
         Color c = new Color(rnd.nextFloat(0.1f), rnd.nextFloat(0.4f), rnd.nextFloat(0.8f));
-        Particle p = new Particle(max_size, position, velocity, c, life);
+        Particle p = new Particle(max_size, position, velocity, c, life, -1.0f);
         particleSystem.spawn(p);
 
 	}

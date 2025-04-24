@@ -6,8 +6,9 @@ public class Particle {
     public float startLife;
     public float life;
     public Color color;
+    public float mass;
 
-    public Particle(float size, Vector2 position, Vector2 velocity, Color color, float life)
+    public Particle(float size, Vector2 position, Vector2 velocity, Color color, float life, float mass)
     {
         this.size = size;
         this.position = position;
@@ -15,6 +16,7 @@ public class Particle {
         this.color = color;
         this.startLife = life;
         this.life = life;
+        this.mass = mass;
     }
 
     public void setVelocity(Vector2 velocity)
@@ -25,7 +27,7 @@ public class Particle {
     public void updatePosition(float deltaTime) {
         life -= deltaTime;
         
-        velocity.add(new Vector2(0.0f, -1.0f), 50.0f * deltaTime);
+        velocity.add(new Vector2(0.0f, 1.0f), 50.0f * deltaTime * mass);
         position.add(velocity, deltaTime);
     }
 

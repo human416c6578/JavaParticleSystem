@@ -21,7 +21,7 @@ public class App {
 
 	public void run() {
 		System.out.println("LWJGL Version: " + Version.getVersion());
-        particleSystem = new ParticleSystem(100_000, WIDTH, HEIGHT);
+        particleSystem = new ParticleSystem(10_000, WIDTH, HEIGHT);
 		particleSpawner = new ParticleSpawner(particleSystem, WIDTH, HEIGHT);
 
 		init();
