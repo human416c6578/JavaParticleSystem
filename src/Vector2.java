@@ -15,6 +15,12 @@ public class Vector2 {
         this.y += other.y * scale;
     }
 
+    public void add(float x, float y)
+    {
+        this.x += x;
+        this.y += y;
+    }
+
     public void add(Vector2 other)
     {
         this.x += other.x;
@@ -47,5 +53,10 @@ public class Vector2 {
 
     public float dot(Vector2 other) {
         return x * other.x + y * other.y;
+    }
+
+    public void set(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 }

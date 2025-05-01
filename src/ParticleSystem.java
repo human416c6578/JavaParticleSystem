@@ -97,7 +97,19 @@ public class ParticleSystem {
     private void removeDeadParticles() {
         int i = 0;
         for (int j = 0; j < particleCount; j++) {
-            if (particles[j].life > 0.0 && insideBounds(particles[j])) {
+            Vector2 pos = particles[j].position;
+            Vector2 vel = particles[j].velocity;
+    
+            if (pos.y > HEIGHT) {
+                vel.y *= -1.0f;
+                pos.y = Math.max(0.0f, Math.min(pos.y, HEIGHT));
+
+                particles[i++] = particles[j];
+                continue;
+            }
+    
+            // Only keep alive particles
+            if (particles[j].life > 0.0f && insideBounds(particles[j])) {
                 particles[i++] = particles[j];
             }
         }

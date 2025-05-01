@@ -28,6 +28,7 @@ public class Particle {
         life -= deltaTime;
         
         velocity.add(new Vector2(0.0f, 1.0f), 50.0f * deltaTime * mass);
+        velocity.multiply(0.99f);
         position.add(velocity, deltaTime);
     }
 
