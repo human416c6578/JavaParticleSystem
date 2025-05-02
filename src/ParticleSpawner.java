@@ -112,7 +112,7 @@ public class ParticleSpawner {
 	private void spawnParticle(Vector2 position, Vector2 velocity, float life)
 	{
 		Random rnd = new Random();
-        int max_size = 2;
+        int max_size = rnd.nextInt(2) + 2;
 
         Color c = new Color(rnd.nextFloat(0.1f), rnd.nextFloat(0.4f), rnd.nextFloat(0.8f));
         Particle p = new Particle(max_size, position, velocity, c, life, -2.0f);
